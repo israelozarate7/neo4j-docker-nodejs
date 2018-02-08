@@ -31,6 +31,14 @@ app.get('/persons', function (req, res, next) {
     });
 });
 
+app.get('/importCSV', function (req, res, next) {
+    db.cypherQuery("LOAD CSV WITH HEADERS FROM 'https://raw.githubusercontent.com/neo4j/neo4j/2.3/manual/cypher/cypher-docs/src/docs/graphgists/import/persons.csv' AS " +
+        "csvLine CREATE (p:Person {id: toInt(csvLine.id), name: csvLine.name})", function (err, result) {
+        if (err) return next(err);
+        res.json(result.data);
+    });
+});
+
 
 app.listen(3000, function () {
     console.log('started');

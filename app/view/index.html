@@ -33,6 +33,12 @@
           });
         };
 
+        $scope.importCSV = function () {
+            $http.get('/importCSV').then(function () {
+                $scope.show();
+            });
+        };
+
         $scope.drop = function () {
           $http.get('/tools/drop').then(function () {
             $scope.nodes = [];
@@ -49,7 +55,8 @@
 
 <div class="container">
   <h2>Neo4j example</h2>
-  <a class="btn btn-default" ng-click="load()" role="button">Load</a>
+  <a class="btn btn-default" ng-click="load()" role="button">Load single node</a>
+  <a class="btn btn-default" ng-click="importCSV()" role="button">Import CSV</a>
   <a class="btn btn-default" ng-click="drop()" role="button">Drop</a>
 
   <div ng-repeat="node in nodes">
