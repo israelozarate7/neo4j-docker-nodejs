@@ -15,3 +15,5 @@ neo4j:
    - "17474:7474"
   volumes:
    - ./db/dbms:/data/dbms
+   - ./db/import:/var/lib/neo4j/import
+
